@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 import {Product} from '@/model/catalog.model';
 
@@ -13,11 +13,16 @@ export class CatalogListComponent implements OnInit {
   @Input()
   products: Product[] = [];
 
+  @Output()
+  addToCart: EventEmitter<Product> = new EventEmitter();
+
   constructor() {
   }
 
   ngOnInit(): void {
-    console.log('ngOnInit', this.products);
   }
 
+  handleAddToCart(product: Product): void {
+    this.addToCart.emit(product);
+  }
 }

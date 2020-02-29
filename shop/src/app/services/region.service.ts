@@ -2,22 +2,22 @@ import {Injectable} from '@angular/core';
 import {Observable, timer} from 'rxjs';
 import {mapTo} from 'rxjs/operators';
 
-import {testData} from '@/testDataProduct';
-import {Product} from '@/model/catalog.model';
+import {testData} from '@/testDataRegion';
+import {Region} from '@/model/region.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CatalogService {
+export class RegionService {
 
   constructor() {
   }
 
-  fakeHttp(): Observable<Product[]> {
+  fakeHttp(): Observable<Region[]> {
     return timer(200).pipe(mapTo(testData));
   }
 
-  loadProducts(): Observable<Product[]> {
+  loadRegion(): Observable<Region[]> {
     return this.fakeHttp();
   }
 }

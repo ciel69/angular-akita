@@ -1,4 +1,23 @@
+<div class="container">
+  <div class="select-region">
+    <app-region
+      [regions]="regions"
+      [selectedRegion]="selectedRegion"
+      (changeRegion)="handleChangeRegion($event)"
+    ></app-region>
+  </div>
+  <div class="button-basket">
+    <app-top-basket
+      [basket]="basket"
+      [count]="basketCount"
+      [sum]="basketSum"
+    ></app-top-basket>
+  </div>
+</div>
 <p-menubar [model]="items" styleClass="container top-menu"></p-menubar>
 <div class="container page">
-  <router-outlet></router-outlet>
+  <router-outlet
+    (activate)="componentAdded($event)"
+    (deactivate)="componentRemoved($event)"
+  ></router-outlet>
 </div>
