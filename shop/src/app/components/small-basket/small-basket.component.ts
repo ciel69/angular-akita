@@ -1,5 +1,7 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild} from '@angular/core';
 import {OverlayPanel} from 'primeng/overlaypanel';
+import {Router} from '@angular/router';
+
 import {Product} from '@/model/catalog.model';
 
 @Component({
@@ -19,10 +21,15 @@ export class SmallBasketComponent implements OnInit, OnChanges {
   @Output()
   changeCount: EventEmitter<Product> = new EventEmitter();
 
+  @Output()
+  deleteProduct: EventEmitter<Product> = new EventEmitter();
+
   @ViewChild('overlayPanel', {static: false})
   overlayPanel: OverlayPanel;
 
-  constructor() {
+  constructor(
+    private router: Router
+  ) {
   }
 
   ngOnInit(): void {
@@ -38,4 +45,14 @@ export class SmallBasketComponent implements OnInit, OnChanges {
     this.changeCount.emit(product);
   }
 
+  handleDelete(product: Product): void {
+    this.deleteProduct.emit(product);
+  }
+
+  goBasket(): void {
+    this.router.navigateByUrl('/basket');
+    if (this.overlayPanel) {
+      this.overlayPanel.hide();
+    }
+  }
 }

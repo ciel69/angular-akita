@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import {ButtonModule, CardModule, DropdownModule, MenubarModule, OverlayPanelModule} from 'primeng';
+import {ButtonModule, CardModule, DropdownModule, MenubarModule, OverlayPanelModule, TooltipModule} from 'primeng';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -20,6 +20,8 @@ import { PriceComponent } from './components/price/price.component';
 import { SmallBasketComponent } from './components/small-basket/small-basket.component';
 import { SmallBasketListComponent } from './components/small-basket-list/small-basket-list.component';
 import { SmallBasketItemComponent } from './components/small-basket-item/small-basket-item.component';
+import { BasketItemComponent } from './components/basket-item/basket-item.component';
+import { BasketListComponent } from './components/basket-list/basket-list.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { SmallBasketItemComponent } from './components/small-basket-item/small-b
     PriceComponent,
     SmallBasketComponent,
     SmallBasketListComponent,
-    SmallBasketItemComponent
+    SmallBasketItemComponent,
+    BasketItemComponent,
+    BasketListComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -48,7 +52,8 @@ import { SmallBasketItemComponent } from './components/small-basket-item/small-b
     FormsModule,
     DropdownModule,
     OverlayPanelModule,
-    ButtonModule
+    ButtonModule,
+    TooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

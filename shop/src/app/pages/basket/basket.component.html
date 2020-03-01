@@ -1,1 +1,8 @@
-<p>basket works!</p>
+<div class="basket-page">
+  <h3>Корзина</h3>
+  <app-basket-list
+    [basket]="basketDiscount"
+    (changeCount)="handleChangeCount($event)"
+    (deleteProduct)="handleDelete($event)"
+  ></app-basket-list>
+</div>

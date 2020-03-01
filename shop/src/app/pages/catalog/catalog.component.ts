@@ -1,8 +1,9 @@
-import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {untilDestroyed} from 'ngx-take-until-destroy';
+import {Subject} from 'rxjs';
 
 import {CatalogService} from '@/services/catalog.service';
 import {Product} from '@/model/catalog.model';
-import {Subject} from 'rxjs';
 import {Region} from '@/model/region.model';
 
 @Component({
@@ -10,12 +11,12 @@ import {Region} from '@/model/region.model';
   templateUrl: './catalog.component.html',
   styleUrls: ['./catalog.component.scss']
 })
-export class CatalogComponent implements OnInit {
+export class CatalogComponent implements OnInit, OnDestroy {
 
   addToCart$: Subject<Product> = new Subject<Product>();
   changeRegion$: Subject<Region> = new Subject<Region>();
 
-  selectedRegion: Region;
+  selectedRegion: Region = null;
   products: Product[] = [];
   productsDiscount: Product[] = [];
   basket: Product[] = [];
@@ -31,10 +32,15 @@ export class CatalogComponent implements OnInit {
         this.products = res;
         this.updateDiscount();
       });
-    this.changeRegion$.subscribe(res => {
-      this.selectedRegion = res;
-      this.updateDiscount();
-    });
+    this.changeRegion$
+      .pipe(untilDestroyed(this))
+      .subscribe(res => {
+        this.selectedRegion = res;
+        this.updateDiscount();
+      });
+  }
+
+  ngOnDestroy(): void {
   }
 
   handleAddToCart(product: Product): void {

@@ -15,16 +15,23 @@ export class SmallBasketItemComponent implements OnInit {
   @Output()
   changeCount: EventEmitter<Product> = new EventEmitter();
 
+  @Output()
+  deleteProduct: EventEmitter<Product> = new EventEmitter();
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  handleChangeCount($event: number): void {
+  handleChangeCount(count: number): void {
     this.changeCount.emit({
       ...this.item,
-      count: $event
+      count
     });
+  }
+
+  handleDelete(): void {
+    this.deleteProduct.emit(this.item);
   }
 
 }

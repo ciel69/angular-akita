@@ -3,12 +3,12 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output}
 import {Product} from '@/model/catalog.model';
 
 @Component({
-  selector: 'app-small-basket-list',
-  templateUrl: './small-basket-list.component.html',
-  styleUrls: ['./small-basket-list.component.scss'],
+  selector: 'app-basket-list',
+  templateUrl: './basket-list.component.html',
+  styleUrls: ['./basket-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SmallBasketListComponent implements OnInit {
+export class BasketListComponent implements OnInit {
 
   @Input()
   basket: Product[] = [];

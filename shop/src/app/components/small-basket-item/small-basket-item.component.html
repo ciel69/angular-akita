@@ -1,7 +1,16 @@
-<div>
-  <span>{{item.name}} </span>
-  <app-count-product
-    [count]="item.count"
-    (changeCount)="handleChangeCount($event)"
-  ></app-count-product>
+<div class="small-basket-item">
+  <div class="small-basket-item__name">{{item.name}}</div>
+  <div class="small-basket-item__count">
+    <app-count-product
+      [count]="item.count"
+      (changeCount)="handleChangeCount($event)"
+    ></app-count-product>
+  </div>
+  <div class="small-basket-item__del">
+    <i
+      class="pi pi-trash"
+      pTooltip="Удалить"
+      (click)="handleDelete()"
+    ></i>
+  </div>
 </div>

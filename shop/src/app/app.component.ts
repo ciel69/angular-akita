@@ -1,5 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {MenuItem} from 'primeng';
+import {Subject} from 'rxjs';
 
 import {Product} from '@/model/catalog.model';
 import {RegionService} from '@/services/region.service';
@@ -19,6 +20,10 @@ export class AppComponent implements OnInit {
   ) {
   }
 
+  subscribeAddToCart: Subject<Product>;
+  subscribeChangeCount: Subject<Product>;
+  subscribeDeleteProduct: Subject<Product>;
+
   selectedRegion: Region = testData[0];
   regions: Region[];
   items: MenuItem[];
@@ -31,7 +36,6 @@ export class AppComponent implements OnInit {
     this.items = [
       {label: 'Главная', routerLink: ['/'], routerLinkActiveOptions: {exact: true}},
       {label: 'Каталог', routerLink: ['/catalog']},
-      {label: 'Корзина', routerLink: ['/basket']},
     ];
     this.regionService.loadRegion()
       .subscribe(res => {
@@ -41,27 +45,61 @@ export class AppComponent implements OnInit {
 
   componentAdded(event: any): void {
     this.childComponent = event;
-    if (event.addToCart$) {
-      event.selectedRegion = this.selectedRegion;
+    if (typeof event.basket !== 'undefined') {
       event.basket = this.basket;
-      event.addToCart$.subscribe((product) => {
-        const indexProduct = this.basket.findIndex(item => item.id === product.id);
-        if (indexProduct !== -1) {
-          this.basket[indexProduct] = {
-            ...product,
-            count: this.basket[indexProduct].count + product.count
-          };
-        } else {
-          this.basket = [...this.basket, product];
-        }
-        event.basket = this.basket;
-        this.updateSumAndPrice();
-      });
+    }
+    if (typeof event.selectedRegion !== 'undefined') {
+      event.selectedRegion = this.selectedRegion;
+    }
+    if (event.addToCart$) {
+      this.subscribeAddToCart = event.addToCart$
+        .subscribe((product) => {
+          const indexProduct = this.basket.findIndex(item => item.id === product.id);
+          if (indexProduct !== -1) {
+            this.basket[indexProduct] = {
+              ...product,
+              count: this.basket[indexProduct].count + product.count
+            };
+          } else {
+            this.basket = [...this.basket, product];
+          }
+          event.basket = this.basket;
+          this.updateSumAndPrice();
+        });
+    }
+    if (event.changeCount$) {
+      this.subscribeChangeCount = event.changeCount$
+        .subscribe((product) => {
+          const indexProduct = this.basket.findIndex(item => item.id === product.id);
+          this.basket[indexProduct] = product;
+          this.basket = [...this.basket];
+          this.updateSumAndPrice();
+          event.basket = this.basket;
+        });
+    }
+    if (event.deleteProduct$) {
+      this.subscribeDeleteProduct = event.deleteProduct$
+        .subscribe((product) => {
+          this.basket = this.basket.filter(item => item.id !== product.id);
+          this.updateSumAndPrice();
+          event.basket = this.basket;
+          if (this.childComponent.changeRegion$) {
+            this.childComponent.changeRegion$.next(this.selectedRegion);
+          }
+        });
     }
   }
 
-  componentRemoved($event: any): void {
-    console.log('componentRemoved', $event);
+  componentRemoved(): void {
+    if (this.subscribeAddToCart) {
+      this.subscribeAddToCart.unsubscribe();
+    }
+    if (this.subscribeChangeCount) {
+      this.subscribeChangeCount.unsubscribe();
+    }
+    if (this.subscribeDeleteProduct) {
+      this.subscribeDeleteProduct.unsubscribe();
+    }
   }
 
   updateSumAndPrice(): void {
@@ -90,6 +128,14 @@ export class AppComponent implements OnInit {
       if (this.childComponent.basket) {
         this.childComponent.basket = this.basket;
       }
+    }
+  }
+
+  handleDelete(product: Product): void {
+    this.basket = this.basket.filter(item => item.id !== product.id);
+    this.updateSumAndPrice();
+    if (this.childComponent.basket) {
+      this.childComponent.basket = this.basket;
     }
   }
 }

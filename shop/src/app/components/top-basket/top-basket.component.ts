@@ -1,4 +1,5 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+
 import {Product} from '@/model/catalog.model';
 
 @Component({
@@ -21,6 +22,9 @@ export class TopBasketComponent implements OnInit {
   @Output()
   changeCount: EventEmitter<Product> = new EventEmitter();
 
+  @Output()
+  deleteProduct: EventEmitter<Product> = new EventEmitter();
+
   show = true;
 
   constructor() { }
@@ -34,6 +38,10 @@ export class TopBasketComponent implements OnInit {
 
   handleChangeCount(product: Product): void {
     this.changeCount.emit(product);
+  }
+
+  handleDelete(product: Product): void {
+    this.deleteProduct.emit(product);
   }
 
 }

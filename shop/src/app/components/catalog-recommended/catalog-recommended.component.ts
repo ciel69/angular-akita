@@ -1,4 +1,5 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+
 import {Product} from '@/model/catalog.model';
 
 @Component({

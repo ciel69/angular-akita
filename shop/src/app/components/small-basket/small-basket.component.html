@@ -6,6 +6,9 @@
     <app-small-basket-list
       [basket]="basket"
       (changeCount)="handleChangeCount($event)"
+      (deleteProduct)="handleDelete($event)"
     ></app-small-basket-list>
+<!--    <a routerLink="/basket">Перейти в корзину</a>-->
+    <button label="Оплатить" pButton (click)="goBasket()"></button>
   </ng-template>
 </p-overlayPanel>

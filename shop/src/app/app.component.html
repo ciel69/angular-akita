@@ -13,6 +13,7 @@
       [count]="basketCount"
       [sum]="basketSum"
       (changeCount)="handleChangeCount($event)"
+      (deleteProduct)="handleDelete($event)"
     ></app-top-basket>
   </div>
 </div>
@@ -20,6 +21,6 @@
 <div class="container page">
   <router-outlet
     (activate)="componentAdded($event)"
-    (deactivate)="componentRemoved($event)"
+    (deactivate)="componentRemoved()"
   ></router-outlet>
 </div>

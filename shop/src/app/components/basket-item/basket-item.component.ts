@@ -3,15 +3,15 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output}
 import {Product} from '@/model/catalog.model';
 
 @Component({
-  selector: 'app-small-basket-list',
-  templateUrl: './small-basket-list.component.html',
-  styleUrls: ['./small-basket-list.component.scss'],
+  selector: 'app-basket-item',
+  templateUrl: './basket-item.component.html',
+  styleUrls: ['./basket-item.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SmallBasketListComponent implements OnInit {
+export class BasketItemComponent implements OnInit {
 
   @Input()
-  basket: Product[] = [];
+  item: Product;
 
   @Output()
   changeCount: EventEmitter<Product> = new EventEmitter();
@@ -25,12 +25,16 @@ export class SmallBasketListComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  handleChangeCount(product: Product): void {
-    this.changeCount.emit(product);
+
+  handleChangeCount(count: number): void {
+    this.changeCount.emit({
+      ...this.item,
+      count
+    });
   }
 
-  handleDelete(product: Product): void {
-    this.deleteProduct.emit(product);
+  handleDelete(): void {
+    this.deleteProduct.emit(this.item);
   }
 
 }

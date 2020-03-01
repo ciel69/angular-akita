@@ -1,4 +1,4 @@
-.small-basket-item {
+.basket-item {
   display: flex;
   float: left;
   padding-bottom: 5px;
@@ -6,6 +6,15 @@
   &__name {
     float: left;
     margin-right: 5px;
+    width: 67px;
+  }
+
+  &__price {
+    width: 85px;
+  }
+
+  &__sum {
+    width: 85px;
   }
 
   &__count {
