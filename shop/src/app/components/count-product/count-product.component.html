@@ -1,5 +1,5 @@
 <div class="count-product">
   <button (click)="decreaseCount()">-</button>
-  <input type="text" [(ngModel)]="count">
+  <input type="text" [(ngModel)]="count" (blur)="changeCount.emit(count)">
   <button (click)="increaseCount()">+</button>
 </div>

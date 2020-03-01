@@ -1,8 +1,9 @@
 <div class="p-grid">
   <div *ngFor="let product of products" class="p-col-4">
-    <app-catalog-item
+    <app-product
+      [inBasket]="inBasket(product)"
       [product]="product"
       (addToCart)="handleAddToCart($event)"
-    ></app-catalog-item>
+    ></app-product>
   </div>
 </div>

@@ -1,5 +1,7 @@
-<p>catalog works!</p>
-<app-catalog-list
-  [products]="productsDiscount"
-  (addToCart)="handleAddToCart($event)"
-></app-catalog-list>
+<div>
+  <app-catalog-list
+    [basket]="basket"
+    [products]="productsDiscount"
+    (addToCart)="handleAddToCart($event)"
+  ></app-catalog-list>
+</div>

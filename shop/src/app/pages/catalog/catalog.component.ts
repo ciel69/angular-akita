@@ -10,7 +10,7 @@ import {Region} from '@/model/region.model';
   templateUrl: './catalog.component.html',
   styleUrls: ['./catalog.component.scss']
 })
-export class CatalogComponent implements OnInit, OnChanges {
+export class CatalogComponent implements OnInit {
 
   addToCart$: Subject<Product> = new Subject<Product>();
   changeRegion$: Subject<Region> = new Subject<Region>();
@@ -23,10 +23,6 @@ export class CatalogComponent implements OnInit, OnChanges {
   constructor(
     private catalogService: CatalogService
   ) {
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log('ngOnChanges', changes);
   }
 
   ngOnInit(): void {

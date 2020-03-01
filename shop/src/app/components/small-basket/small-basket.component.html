@@ -1,0 +1,11 @@
+<p-overlayPanel #overlayPanel>
+  <div *ngIf="!basket.length; else notEmpty">
+    Корзина пуста
+  </div>
+  <ng-template #notEmpty>
+    <app-small-basket-list
+      [basket]="basket"
+      (changeCount)="handleChangeCount($event)"
+    ></app-small-basket-list>
+  </ng-template>
+</p-overlayPanel>

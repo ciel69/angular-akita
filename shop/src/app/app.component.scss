@@ -7,8 +7,13 @@ html, body {
   background-color: #e9f1f7;
 }
 body app-root {
+  .mini-menu {
+    display: flex;
+  }
   .select-region {
     float: left;
+    margin: auto;
+    margin-left: 0;
   }
   .button-basket {
     float: right;
@@ -32,6 +37,11 @@ body app-root {
         color: #fff !important;
       }
     }
+  }
+
+  .ui-button {
+    background-color: #4fc08d !important;
+    border-color: #4fc08d !important;
   }
 
   .container {

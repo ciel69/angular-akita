@@ -15,5 +15,10 @@ export const testData: Product[] = [
     id: 3,
     name: 'Item 3',
     price: 5590,
+  },
+  {
+    id: 4,
+    name: 'Item 4',
+    price: 5000,
   }
 ];

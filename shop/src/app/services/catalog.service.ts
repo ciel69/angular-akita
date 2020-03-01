@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable, timer} from 'rxjs';
-import {mapTo} from 'rxjs/operators';
+import {mapTo, map} from 'rxjs/operators';
 
 import {testData} from '@/testDataProduct';
 import {Product} from '@/model/catalog.model';
@@ -19,5 +19,13 @@ export class CatalogService {
 
   loadProducts(): Observable<Product[]> {
     return this.fakeHttp();
+  }
+
+  loadRecommendedProducts(): Observable<Product[]> {
+    return this.fakeHttp().pipe(
+      map(res => {
+        return res.slice(0 , 3);
+      })
+    );
   }
 }

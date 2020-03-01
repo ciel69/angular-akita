@@ -2,15 +2,18 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output}
 import {Product} from '@/model/catalog.model';
 
 @Component({
-  selector: 'app-catalog-item',
-  templateUrl: './catalog-item.component.html',
-  styleUrls: ['./catalog-item.component.scss'],
+  selector: 'app-product',
+  templateUrl: './product.component.html',
+  styleUrls: ['./product.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CatalogItemComponent implements OnInit {
+export class ProductComponent implements OnInit {
 
   @Input()
   product: Product;
+
+  @Input()
+  inBasket: Product;
 
   @Output()
   addToCart: EventEmitter<Product> = new EventEmitter();
@@ -24,11 +27,11 @@ export class CatalogItemComponent implements OnInit {
   }
 
   handleAddToCart(): void {
-    console.log('handleAddToCart');
     this.addToCart.emit({
       ...this.product,
       count: this.count
     });
+    this.count = 1;
   }
 
   handleChangeCount($event: number): void {

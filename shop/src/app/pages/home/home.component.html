@@ -1,1 +1,8 @@
-<p>home works!</p>
+<div class="home">
+  <h1>Главная страница</h1>
+  <app-catalog-recommended
+    [basket]="basket"
+    [products]="productsDiscount"
+    (addToCart)="handleAddToCart($event)"
+  ></app-catalog-recommended>
+</div>

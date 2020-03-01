@@ -2,34 +2,22 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output}
 import {Product} from '@/model/catalog.model';
 
 @Component({
-  selector: 'app-top-basket',
-  templateUrl: './top-basket.component.html',
-  styleUrls: ['./top-basket.component.scss'],
+  selector: 'app-small-basket-list',
+  templateUrl: './small-basket-list.component.html',
+  styleUrls: ['./small-basket-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TopBasketComponent implements OnInit {
+export class SmallBasketListComponent implements OnInit {
 
   @Input()
   basket: Product[] = [];
 
-  @Input()
-  count = 0;
-
-  @Input()
-  sum = 0;
-
   @Output()
   changeCount: EventEmitter<Product> = new EventEmitter();
-
-  show = true;
 
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-  handleClick(): void {
-    this.show = !this.show;
   }
 
   handleChangeCount(product: Product): void {

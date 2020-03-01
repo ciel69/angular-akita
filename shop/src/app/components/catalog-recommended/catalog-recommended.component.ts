@@ -1,4 +1,5 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Product} from '@/model/catalog.model';
 
 @Component({
   selector: 'app-catalog-recommended',
@@ -8,10 +9,23 @@ import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 })
 export class CatalogRecommendedComponent implements OnInit {
 
+  @Input()
+  products: Product[] = [];
+
+  @Input()
+  basket: Product[] = [];
+
+  @Output()
+  addToCart: EventEmitter<Product> = new EventEmitter();
+
   constructor() {
   }
 
   ngOnInit(): void {
+  }
+
+  handleAddToCart(product: Product): void {
+    this.addToCart.emit(product);
   }
 
 }

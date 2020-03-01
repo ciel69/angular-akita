@@ -1,7 +1,14 @@
 <div class="top-basket">
-  <i class="pi pi-shopping-cart"></i>
+  <i class="pi pi-shopping-cart" (click)="handleClick()"></i>
   <span *ngIf="count" class="top-basket__count">
     {{count}}
   </span>
-  <div *ngIf="sum" class="top-basket__sum">{{sum}}</div>
+  <div *ngIf="sum" class="top-basket__sum">
+    <app-price [price]="sum"></app-price>
+  </div>
 </div>
+<app-small-basket
+  [basket]="basket"
+  [show]="show"
+  (changeCount)="handleChangeCount($event)"
+></app-small-basket>

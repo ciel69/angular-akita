@@ -1,1 +1,8 @@
-<p>catalog-recommended works!</p>
+<div>
+  <h4>Рекомендуемые товары</h4>
+  <app-catalog-list
+    [basket]="basket"
+    [products]="products"
+    (addToCart)="handleAddToCart($event)"
+  ></app-catalog-list>
+</div>

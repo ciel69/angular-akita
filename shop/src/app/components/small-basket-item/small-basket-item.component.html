@@ -1,0 +1,7 @@
+<div>
+  <span>{{item.name}} </span>
+  <app-count-product
+    [count]="item.count"
+    (changeCount)="handleChangeCount($event)"
+  ></app-count-product>
+</div>

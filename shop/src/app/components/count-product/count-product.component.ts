@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-count-product',
@@ -8,10 +8,11 @@ import {ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output} from '
 })
 export class CountProductComponent implements OnInit {
 
+  @Input()
+  count = 1;
+
   @Output()
   changeCount: EventEmitter<number> = new EventEmitter<number>();
-
-  count = 1;
 
   constructor() {
   }

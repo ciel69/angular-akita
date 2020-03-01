@@ -1,0 +1,6 @@
+<div *ngFor="let item of basket">
+  <app-small-basket-item
+    [item]="item"
+    (changeCount)="handleChangeCount($event)"
+  ></app-small-basket-item>
+</div>

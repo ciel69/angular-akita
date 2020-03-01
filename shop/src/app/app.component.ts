@@ -43,6 +43,7 @@ export class AppComponent implements OnInit {
     this.childComponent = event;
     if (event.addToCart$) {
       event.selectedRegion = this.selectedRegion;
+      event.basket = this.basket;
       event.addToCart$.subscribe((product) => {
         const indexProduct = this.basket.findIndex(item => item.id === product.id);
         if (indexProduct !== -1) {
@@ -51,8 +52,7 @@ export class AppComponent implements OnInit {
             count: this.basket[indexProduct].count + product.count
           };
         } else {
-          // this.basket = [...this.basket, product];
-          this.basket.push(product);
+          this.basket = [...this.basket, product];
         }
         event.basket = this.basket;
         this.updateSumAndPrice();
@@ -66,7 +66,7 @@ export class AppComponent implements OnInit {
 
   updateSumAndPrice(): void {
     this.basketCount = this.basket.reduce((acc, product) => {
-      return acc + product.count;
+      return acc + Number(product.count);
     }, 0);
     this.basketSum = this.basket.reduce((acc, product) => {
       return acc + (product.price * product.count * (100 - this.selectedRegion.discount)) / 100;
@@ -78,6 +78,18 @@ export class AppComponent implements OnInit {
     this.updateSumAndPrice();
     if (this.childComponent.changeRegion$) {
       this.childComponent.changeRegion$.next(event);
+    }
+  }
+
+  handleChangeCount(product: Product) {
+    const indexProduct = this.basket.findIndex(item => item.id === product.id);
+    if (indexProduct !== -1) {
+      this.basket[indexProduct] = product;
+      this.basket = [...this.basket];
+      this.updateSumAndPrice();
+      if (this.childComponent.basket) {
+        this.childComponent.basket = this.basket;
+      }
     }
   }
 }
