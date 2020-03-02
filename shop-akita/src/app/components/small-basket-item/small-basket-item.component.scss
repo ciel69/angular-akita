@@ -1,0 +1,27 @@
+.small-basket-item {
+  display: flex;
+  float: left;
+  padding-bottom: 5px;
+
+  &__name {
+    float: left;
+    margin-right: 5px;
+  }
+
+  &__count {
+    float: left;
+    width: 100px;
+  }
+
+  &__del {
+    display: flex;
+    float: left;
+
+    .pi {
+      cursor: pointer;
+      color: red;
+      margin: auto;
+      margin-left: 5px;
+    }
+  }
+}

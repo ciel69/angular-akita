@@ -1,0 +1,18 @@
+<div *ngIf="(basket$ | async).length; else empty" class="basket-list">
+  <div class="basket-list__head">
+    <div class="basket-list__cell">Название</div>
+    <div class="basket-list__cell">Цена за шт</div>
+    <div class="basket-list__cell sum">Сумма</div>
+    <div class="basket-list__cell">Количество</div>
+    <div class="basket-list__cell"></div>
+  </div>
+  <div *ngFor="let item of basket$ | async" class="basket-list__item">
+    <app-basket-item
+      [item]="item"
+    ></app-basket-item>
+  </div>
+</div>
+<ng-template #empty>
+  Корзина пуста
+</ng-template>
+

@@ -1,0 +1,36 @@
+.basket-item {
+  display: flex;
+  float: left;
+  padding-bottom: 5px;
+
+  &__name {
+    float: left;
+    margin-right: 5px;
+    width: 67px;
+  }
+
+  &__price {
+    width: 85px;
+  }
+
+  &__sum {
+    width: 85px;
+  }
+
+  &__count {
+    float: left;
+    width: 100px;
+  }
+
+  &__del {
+    display: flex;
+    float: left;
+
+    .pi {
+      cursor: pointer;
+      color: red;
+      margin: auto;
+      margin-left: 5px;
+    }
+  }
+}

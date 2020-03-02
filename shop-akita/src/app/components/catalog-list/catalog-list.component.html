@@ -1,0 +1,5 @@
+<div class="p-grid">
+  <div *ngFor="let product of products$ | async" class="p-col-4">
+    <app-product [product]="product"></app-product>
+  </div>
+</div>

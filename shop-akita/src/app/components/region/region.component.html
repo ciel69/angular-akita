@@ -1,0 +1,6 @@
+<p-dropdown
+  optionLabel="name"
+  [options]="regions$ | async"
+  [ngModel]="selectedRegion"
+  (onChange)="handleChangeRegion($event)"
+></p-dropdown>

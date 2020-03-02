@@ -1,0 +1,24 @@
+<div class="basket-item">
+  <div class="basket-item__name">
+    {{item.name}}
+  </div>
+  <div class="basket-item__price">
+    <app-price [price]="price$ | async"></app-price>
+  </div>
+  <div class="basket-item__sum">
+    <app-price [price]="(price$ | async) * item.count"></app-price>
+  </div>
+  <div class="basket-item__count">
+    <app-count-product
+      [count]="item.count"
+      (changeCount)="handleChangeCount($event)"
+    ></app-count-product>
+  </div>
+  <div class="basket-item__del">
+    <i
+      class="pi pi-trash"
+      pTooltip="Удалить"
+      (click)="handleDelete()"
+    ></i>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<p-card class="product">
+  <div class="p-grid">
+    <div class="p-col">
+      <div class="product__name">
+        Название: {{product.name}}
+      </div>
+    </div>
+    <div class="p-col">
+      <div *ngIf="basketCount$ | async" class="product__basket">
+        В корзине: {{basketCount$ | async}}
+      </div>
+    </div>
+  </div>
+  <div class="p-grid">
+    <div class="p-col">
+      <div class="product__price">
+        Цена за шт.: <app-price [price]="price$ | async"></app-price>
+      </div>
+    </div>
+    <div class="p-col">
+      <div *ngIf="count > 1" class="product__price">
+        Сумма: <app-price [price]="(price$ | async) * count"></app-price>
+      </div>
+    </div>
+  </div>
+  <app-count-product
+    [count]="count"
+    (changeCount)="handleChangeCount($event)"
+  ></app-count-product>
+  <app-button-to-cart (addToCart)="handleAddToCart()"></app-button-to-cart>
+</p-card>

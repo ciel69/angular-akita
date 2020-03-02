@@ -1,0 +1,31 @@
+.top-basket {
+  position: relative;
+
+  .pi {
+    font-size: 30pt;
+    cursor: pointer;
+  }
+
+  &__count {
+    position: absolute;
+    text-align: center;
+    top: -5px;
+    right: -5px;
+    padding: 5px;
+    display: inline-block;
+    background-color: #4fc08d;
+    min-width: 25px;
+    min-height: 25px;
+    border-radius: 100%;
+    color: #fff;
+
+    span {
+      font-size: 14px;
+      font-weight: bold;
+    }
+  }
+
+  &__sum {
+    text-align: center;
+  }
+}

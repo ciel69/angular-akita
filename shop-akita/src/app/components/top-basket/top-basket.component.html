@@ -1,0 +1,13 @@
+<div class="top-basket">
+  <i class="pi pi-shopping-cart" (click)="handleClick()"></i>
+  <span *ngIf="countsProduct$ | async" class="top-basket__count">
+    {{countsProduct$ | async}}
+  </span>
+  <div *ngIf="sumProduct$ | async" class="top-basket__sum">
+    <app-price [price]="sumProduct$ | async"></app-price>
+  </div>
+</div>
+<app-small-basket
+  [basket]="basket$ | async"
+  [show]="show"
+></app-small-basket>

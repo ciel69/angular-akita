@@ -1,0 +1,13 @@
+<div class="container mini-menu">
+  <div class="select-region">
+    Регион:
+    <app-region></app-region>
+  </div>
+  <div class="button-basket">
+    <app-top-basket></app-top-basket>
+  </div>
+</div>
+<p-menubar [model]="items" styleClass="container top-menu"></p-menubar>
+<div class="container page">
+  <router-outlet></router-outlet>
+</div>

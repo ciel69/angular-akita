@@ -1,0 +1,23 @@
+.basket-list {
+  &__head {
+    display: flex;
+    margin-bottom: 10px;
+  }
+
+  &__cell {
+    padding: 0 5px;
+
+    &.sum {
+      width: 85px;
+    }
+
+    &:first-child {
+      padding-left: 0;
+    }
+  }
+
+  &__item {
+    float: left;
+    width: 100%;
+  }
+}
