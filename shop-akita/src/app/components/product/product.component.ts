@@ -2,7 +2,8 @@ import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 
 import {BasketQuery, BasketService} from '@/store/basket';
-import {Product, ProductsQuery} from '@/store/products';
+import {Product} from '@/store/products';
+import {RegionsQuery} from '@/store/regions';
 
 @Component({
   selector: 'app-product',
@@ -22,13 +23,13 @@ export class ProductComponent implements OnInit {
   constructor(
     private basketService: BasketService,
     private basketQuery: BasketQuery,
-    protected productsQuery: ProductsQuery
+    protected regionsQuery: RegionsQuery
   ) {
   }
 
   ngOnInit(): void {
     this.basketCount$ = this.basketQuery.selectEntity(this.product.id, 'count');
-    this.price$ = this.productsQuery.getPriceDiscount(this.product.price);
+    this.price$ = this.regionsQuery.getPriceDiscount(this.product.price);
   }
 
   handleAddToCart(): void {

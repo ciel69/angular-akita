@@ -1,6 +1,5 @@
 import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
 
 import {Basket, BasketService} from '@/store/basket';
 import {RegionsQuery} from '@/store/regions';
@@ -25,8 +24,7 @@ export class BasketItemComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.price$ = this.regionsQuery.currentRegion$
-      .pipe(map(region => (this.item.price * (100 - region.discount)) / 100));
+    this.price$ = this.regionsQuery.getPriceDiscount(this.item.price);
   }
 
 

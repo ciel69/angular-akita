@@ -20,7 +20,7 @@ export class BasketService {
   }
 
   changeCount(data: Basket): void {
-    this.basketStore.upsert(data.id, data);
+    this.basketStore.update(data.id, data);
   }
 
   deleteProduct(id: ID): void {

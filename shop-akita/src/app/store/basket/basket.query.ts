@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {QueryEntity} from '@datorama/akita';
-import {map, reduce, tap} from 'rxjs/operators';
-import {combineLatest, Observable, of} from 'rxjs';
+import {map} from 'rxjs/operators';
+import {combineLatest, Observable} from 'rxjs';
 
 import {BasketStore, BasketState} from './basket.store';
 import {RegionsQuery} from '@/store/regions';
