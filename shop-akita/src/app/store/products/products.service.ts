@@ -1,12 +1,12 @@
-import { Injectable } from '@angular/core';
-import { ProductsStore } from './products.store';
+import {Injectable} from '@angular/core';
+import {ProductsStore} from './products.store';
 import {map, mapTo, tap} from 'rxjs/operators';
 import {Observable, timer} from 'rxjs';
 
 import {testData} from '@/testDataProduct';
 import {Product} from '@/store/products/product.model';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({providedIn: 'root'})
 export class ProductsService {
 
   constructor(
@@ -24,7 +24,7 @@ export class ProductsService {
 
   loadRecommendedProducts(): Observable<Product[]> {
     return this.fakeHttp().pipe(
-      map(res => res.slice(0 , 3)),
+      map(res => res.slice(0, 3)),
       tap(entities => this.productsStore.set(entities))
     );
   }
