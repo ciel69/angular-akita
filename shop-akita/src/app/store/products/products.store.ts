@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { EntityState, EntityStore, StoreConfig } from '@datorama/akita';
-import { Catalog } from './catalog.model';
+import { Product } from './product.model';
 
-export interface CatalogsState extends EntityState<Catalog> {}
+export interface ProductsState extends EntityState<Product> {}
 
 @Injectable({ providedIn: 'root' })
 @StoreConfig({
-  name: 'catalogs'
+  name: 'products'
 })
-export class CatalogsStore extends EntityStore<CatalogsState> {
+export class ProductsStore extends EntityStore<ProductsState> {
 
   constructor() {
     super();

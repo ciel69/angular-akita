@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 
-import {CatalogsService} from '@/store/catalogs';
+import {ProductsService} from '@/store/products';
 
 @Component({
   selector: 'app-catalog',
@@ -10,15 +10,15 @@ import {CatalogsService} from '@/store/catalogs';
 export class CatalogComponent implements OnInit, OnDestroy {
 
   constructor(
-    private catalogService: CatalogsService
+    private productsService: ProductsService
   ) {
   }
 
   ngOnInit(): void {
-    this.catalogService.loadProducts().subscribe();
+    this.productsService.loadProducts().subscribe();
   }
 
   ngOnDestroy(): void {
-    this.catalogService.clearStore();
+    this.productsService.clearStore();
   }
 }

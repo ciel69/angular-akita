@@ -1,4 +1,4 @@
-import {Product} from '@/model/catalog.model';
+import {Product} from '@/store/products';
 
 export const testData: Product[] = [
   {

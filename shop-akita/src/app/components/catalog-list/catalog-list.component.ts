@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 
-import {Catalog, CatalogsQuery} from '@/store/catalogs';
+import {Product, ProductsQuery} from '@/store/products';
 
 @Component({
   selector: 'app-catalog-list',
@@ -11,14 +11,14 @@ import {Catalog, CatalogsQuery} from '@/store/catalogs';
 })
 export class CatalogListComponent implements OnInit {
 
-  products$: Observable<Catalog[]>;
+  products$: Observable<Product[]>;
 
   constructor(
-    private catalogsQuery: CatalogsQuery
+    private productsQuery: ProductsQuery
   ) {
   }
 
   ngOnInit(): void {
-    this.products$ = this.catalogsQuery.selectAll();
+    this.products$ = this.productsQuery.selectAll();
   }
 }
